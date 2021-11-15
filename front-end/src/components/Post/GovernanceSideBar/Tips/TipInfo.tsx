@@ -41,7 +41,6 @@ const TipInfo = ({ className, onChainId }: Props) => {
 	const { api, apiReady } = useContext(ApiContext);
 	const [tips, setTips] = useState<any>(null);
 	const [isTippersLoading, setIsTippersLoading] = useState(true);
-	const [members, setMembers] = useState<string[]>([]);
 	//const [median, setMedian] = useState<BN>(new BN(0));
 
 	useEffect(() => {
@@ -61,22 +60,16 @@ const TipInfo = ({ className, onChainId }: Props) => {
 			//setMedian(Median(tips[0]?.toJSON()));
 		});
 
-		api.query.council.members().then((members) => {
-			setMembers(members.map(member => member.toString()));
-		});
-
 		return () => unsubscribe && unsubscribe();
 	}, [api, apiReady, isTippersLoading, onChainId]);
-
-	const pendingTippers = members.filter(item => !tips?.tips.includes(item));
 
 	return (
 		<>
 			{tips?.tips.length > 0 ?
 				<Card className={className}>
-					<h3>Tippers <HelperTooltip content='Amount tipped by an individual/organisation' /></h3>
+					<h3>Tippers <HelperTooltip content='Amount tipped by council members' /></h3>
 					<Grid className='tippers'>
-						{tips.tips.map((tip: any[]) =>
+						{tips?.tips.map((tip: any[]) =>
 							<Grid.Row key={tip[0]}>
 								<Grid.Column width={12}>
 									<div className='item'>
@@ -85,18 +78,6 @@ const TipInfo = ({ className, onChainId }: Props) => {
 								</Grid.Column>
 								<Grid.Column width={4}>
 									{formatBnBalance(tip[1], { numberAfterComma: 2, withUnit: true })}
-								</Grid.Column>
-							</Grid.Row>
-						)}
-						{pendingTippers.map((tip: string) =>
-							<Grid.Row key={tip}>
-								<Grid.Column width={12}>
-									<div className='item'>
-										<Address address={tip} />
-									</div>
-								</Grid.Column>
-								<Grid.Column width={4}>
-									Pending
 								</Grid.Column>
 							</Grid.Row>
 						)}
