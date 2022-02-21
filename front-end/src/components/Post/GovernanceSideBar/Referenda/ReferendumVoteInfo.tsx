@@ -2,7 +2,6 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { DeriveReferendumVote } from '@polkadot/api-derive/types';
 import { getFailingThreshold, getPassingThreshold } from '@polkassembly/util';
 import styled from '@xstyled/styled-components';
 import BN from 'bn.js';
@@ -16,6 +15,7 @@ import Loader from 'src/ui-components/Loader';
 import PassingInfo from 'src/ui-components/PassingInfo';
 import VoteProgress from 'src/ui-components/VoteProgress';
 import formatBnBalance from 'src/util/formatBnBalance';
+import getNetwork from 'src/util/getNetwork';
 
 interface Props {
 	className?: string
@@ -24,6 +24,10 @@ interface Props {
 }
 
 const ZERO = new BN(0);
+
+const NETWORK = getNetwork();
+
+const SUBSCAN_API_KEY = process.env.SUBSCAN_API_KEY;
 
 const ReferendumVoteInfo = ({ className, referendumId, threshold }: Props) => {
 	const { api, apiReady } = useContext(ApiContext);
@@ -60,65 +64,47 @@ const ReferendumVoteInfo = ({ className, referendumId, threshold }: Props) => {
 		[ayeVotes, ayeVotesWithoutConviction, isPassing, nayVotes, nayVotesWithoutConviction, threshold, totalIssuance]
 	);
 
-	useEffect(() => {
-		if (!api) {
-			return;
-		}
-
-		if (!apiReady) {
-			return;
-		}
-
-		let unsubscribe: () => void;
-
-		api.derive.democracy.referendums((referendums) => {
-			const referendum = referendums.filter(re => re.index.toNumber() === referendumId)[0];
-
-			if (referendum) {
-				setIsPassing(referendum.isPassing);
-
-				const totalAye: BN = referendum.allAye.reduce((acc: BN, curr: DeriveReferendumVote) => {
-					return acc.add(new BN(curr.balance));
-				}, ZERO);
-				const totalNay: BN = referendum.allNay.reduce((acc: BN, curr: DeriveReferendumVote) => {
-					return acc.add(new BN(curr.balance));
-				}, ZERO);
-
-				setNayVotesWithoutConviction(totalNay);
-				setAyeVotesWithoutConviction(totalAye);
-			}
-		}).then( unsub => {unsubscribe = unsub;})
-			.catch(console.error);
-
-		return () => unsubscribe && unsubscribe();
-	}, [api, apiReady, referendumId]);
+	if (!SUBSCAN_API_KEY){
+		throw Error('Please set the SUBSCAN_API_KEY environment variable');
+	}
 
 	useEffect(() => {
-		if (!api) {
-			return;
-		}
 
-		if (!apiReady) {
-			return;
-		}
+		const response = async () => {
+			const getreferenda = {
+				body: JSON.stringify({
+					referendum_index: referendumId
+				}),
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					'X-API-Key': SUBSCAN_API_KEY
+				},
+				method: 'POST'
+			};
 
-		let unsubscribe: () => void;
+			const api = `https://${NETWORK}.api.subscan.io/api/scan/democracy/referendum`;
 
-		api.query.democracy.referendumInfoOf(referendumId, (info) => {
-			const _info = info.unwrapOr(null);
+			const post = await fetch(api, getreferenda);
 
-			if (_info?.isOngoing){
-				setAyeVotes(_info?.asOngoing.tally.ayes);
-				setNayVotes(_info?.asOngoing.tally.nays);
-				setTurnout(_info?.asOngoing.tally.turnout);
+			const { errors, data } = await post.json();
+
+			if (errors) {
+				throw Error('Something went wrong with subscan api');
 			}
 
-			setLoadingStatus({ isLoading: false, message: '' });
-		})
-			.then( unsub => {unsubscribe = unsub;})
-			.catch(console.error);
+			if (data) {
+				setLoadingStatus({ isLoading: false, message: '' });
+				setIsPassing(false); //TODO
+				setNayVotesWithoutConviction(new BN(data.info.nay_without_conviction));
+				setAyeVotesWithoutConviction(new BN(data.info.aye_without_conviction));
+				setAyeVotes(new BN(data.info.aye_amount));
+				setNayVotes(new BN(data.info.nay_amount));
+				setTurnout(new BN(data.info.turnout));
+			}
+		};
+		response();
 
-		return () => unsubscribe && unsubscribe();
 	}, [api, apiReady, referendumId]);
 
 	useEffect(() => {
