@@ -8,8 +8,8 @@ import Address from '../model/Address';
 import Notification from '../model/Notification';
 import PostSubscription from '../model/PostSubscription';
 import User from '../model/User';
-import { sendCommentMentionMail, sendNewProposalCreatedEmail, sendOwnProposalCreatedEmail, sendPostSubscriptionMail } from '../services/email';
-import { CommentCreationHookDataType, HookResponseMessageType, MessageType, OnchainLinkType, PostTypeEnum } from '../types';
+import { sendCommentMentionMail, sendNewPostCreatedEmail, sendNewProposalCreatedEmail, sendOwnProposalCreatedEmail, sendPostSubscriptionMail } from '../services/email';
+import { CommentCreationHookDataType, HookResponseMessageType, MessageType, OnchainLinkType, PostCreateType, PostTypeEnum } from '../types';
 import getMentions from '../utils/getMentions';
 import getPostCommentLink from '../utils/getPostCommentLink';
 import getPostId from '../utils/getPostId';
@@ -219,6 +219,31 @@ const sendNewProposalCreated = async (onchainLink: OnchainLinkType, responseMess
 	return { ...responseMessage, sendNewProposalCreatedMessage: messages.NEW_PROPOSAL_CREATED_MAIL_SENT };
 };
 
+const sendNewPostCreated = async (post: PostCreateType): Promise<HookResponseMessageType> => {
+	const { id, author_id, title, content } = post;
+
+	if (!id) {
+		return { sendNewPostCreatedMessage: messages.EVENT_POST_ID_NOT_FOUND };
+	}
+
+	if (!author_id) {
+		return { sendNewPostCreatedMessage: messages.EVENT_AUTHOR_ID_NOT_FOUND };
+	}
+
+	const user = await User
+		.query()
+		.findById(author_id);
+
+	if (!user) {
+		console.error('sendNewPostCreated - Unexpected empty user');
+		return { sendNewPostCreatedMessage: messages.USER_NOT_FOUND };
+	}
+
+	sendNewPostCreatedEmail(user, id, title, content);
+
+	return { sendNewPostCreatedMessage: messages.EVENT_POST_CREATED_MAIL_SENT };
+};
+
 export const commentCreateHook = async (req: Request, res: Response): Promise<void> => {
 	if (process.env.HASURA_EVENT_SECRET !== req.headers.hasura_event_secret) {
 		console.error("comment create hook failed, secrets don't match");
@@ -248,6 +273,26 @@ export const onchainLinksCreateHook = async (req: Request, res: Response): Promi
 
 	// this response goes to hasura
 	if (response.sendNewProposalCreatedMessage !== messages.NEW_PROPOSAL_CREATED_MAIL_SENT) {
+		res.status(400).json(response);
+	} else {
+		res.json(response);
+	}
+};
+
+export const postCreateHook = async (req: Request, res: Response): Promise<void> => {
+	if (process.env.HASURA_EVENT_SECRET !== req.headers.hasura_event_secret) {
+		console.error("post create hook failed, secrets don't match");
+		res.status(403).json({ message: messages.UNAUTHORISED });
+		return;
+	}
+
+	const post = req.body?.event?.data?.new || {};
+
+	// Doing this in background as several emails need to be sent
+	const response = await sendNewPostCreated(post);
+
+	// this response goes to hasura
+	if (response.sendNewPostCreatedMessage !== messages.EVENT_POST_CREATED_MAIL_SENT) {
 		res.status(400).json(response);
 	} else {
 		res.json(response);

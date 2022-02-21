@@ -880,3 +880,17 @@
             proposer_address:
               _in: X-Hasura-Polkadot
       check: null
+  event_triggers:
+  - name: post_create
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook_from_env: HASURA_POST_CREATE_EVENT_HOOK
+    headers:
+    - value: HASURA_EVENT_SECRET
+      name: HASURA_EVENT_SECRET

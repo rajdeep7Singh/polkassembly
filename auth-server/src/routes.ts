@@ -6,7 +6,7 @@
 
 import { Router } from 'express';
 
-import { commentCreateHook, onchainLinksCreateHook } from './controllers/eventsHook';
+import { commentCreateHook, onchainLinksCreateHook, postCreateHook } from './controllers/eventsHook';
 
 const router = Router();
 
@@ -16,5 +16,6 @@ router.get('/healthcheck', (req, res) => {
 
 router.post('/auth/event/comment/create', commentCreateHook);
 router.post('/auth/event/onchain_link/create', onchainLinksCreateHook);
+router.post('/auth/event/post/create', postCreateHook);
 
 export default router;

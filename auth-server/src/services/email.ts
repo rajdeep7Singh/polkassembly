@@ -11,6 +11,7 @@ import User from '../model/User';
 import { CommentCreationHookDataType, PostType, PostTypeEnum } from '../types';
 import {
 	commentMentionEmailTemplate,
+	newPostCreatedEmailTemplate,
 	newProposalCreatedEmailTemplate,
 	ownProposalCreatedEmailTemplate,
 	postSubscriptionMailTemplate,
@@ -224,6 +225,32 @@ export const sendNewProposalCreatedEmail = (user: User, type: PostType, url: str
 
 	sgMail.send(msg).catch(e =>
 		console.error('Proposal created email not sent', e));
+};
+
+export const sendNewPostCreatedEmail = (user: User, id: number | string, title: string | undefined, content: string | undefined): void => {
+	if (!apiKey) {
+		console.warn('New proposal created email not sent due to missing API key');
+		return;
+	}
+
+	const text = ejs.render(newPostCreatedEmailTemplate, {
+		content: content,
+		domain: DOMAIN,
+		id: id,
+		title: title,
+		username: user.username || ''
+	});
+
+	const msg = {
+		from: FROM,
+		html: text,
+		subject: 'New post created',
+		text,
+		to: process.env.MODERATOR_MAIL
+	};
+
+	sgMail.send(msg).catch(e =>
+		console.error('Post created email not sent', e));
 };
 
 export const sendReportContentEmail = (username: string, network: string, reportType: string, contentId: string, reason: string, comments: string): void => {

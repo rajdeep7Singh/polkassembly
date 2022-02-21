@@ -144,6 +144,20 @@ export const newProposalCreatedEmailTemplate = container(`
     </p>
 `);
 
+export const newPostCreatedEmailTemplate = container(`
+    <p>
+        Created by <%= username %>!<br/><br/>
+
+        There is a new post.<br />
+        
+        Title: <%= title %><br/><br/>
+
+        Content: <%= content %><br/><br/>
+
+        Polkassembly Team
+    </p>
+`);
+
 export const reportContentEmailTemplate = container(`
     <p>
         Content Reported.<br />

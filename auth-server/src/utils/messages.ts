@@ -40,6 +40,7 @@ export default {
 	EVENT_ADDRESS_NOT_VERIFIED: 'Address not verified.',
 	EVENT_AUTHOR_ID_NOT_FOUND: 'Author id not found',
 	EVENT_AUTHOR_NOT_FOUND: 'Author not found',
+	EVENT_POST_CREATED_MAIL_SENT: 'Post created mail sent.',
 	EVENT_POST_ID_NOT_FOUND: 'Post id not found in event.',
 	EVENT_POST_SUBSCRIPTION_MAIL_SENT: 'Post subscription mail sent.',
 	EVENT_PROPOSAL_CREATED_MAIL_SENT: 'Proposal created mail sent.',

@@ -76,6 +76,7 @@ export interface MessageType {
 export interface HookResponseMessageType {
     sendNewProposalCreatedMessage?: string;
     sendOwnProposalCreatedMessage?: string;
+    sendNewPostCreatedMessage?: string;
 }
 
 export interface ChangeResponseType extends MessageType, TokenType {}
@@ -354,4 +355,13 @@ export interface EditPostArgs {
     signature: string;
     proposalType: string;
     proposalId: string;
+}
+
+export interface PostCreateType {
+    id: number;
+    author_id: number;
+    content?: string;
+    title?: string;
+    topic_id?: number;
+    type_id?: number;
 }
