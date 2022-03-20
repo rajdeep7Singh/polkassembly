@@ -11,3 +11,18 @@ query GET_REFRESH_TOKEN {
     }
 }
 `;
+
+export const GET_CALENDER_EVENTS = gql`
+query GET_CALENDER_EVENTS($network: String!) {
+    calender_events(where: {network: {_ilike: $network}}) {
+        content
+        end_time
+        id
+        module
+        network
+        start_time
+        title
+        url
+  }
+}
+`;

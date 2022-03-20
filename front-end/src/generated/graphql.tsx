@@ -663,6 +663,19 @@ export type BlockNumberWhereUniqueInput = {
   number?: Maybe<Scalars['Int']>;
 };
 
+/** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
+export type Boolean_Comparison_Exp = {
+  _eq?: Maybe<Scalars['Boolean']>;
+  _gt?: Maybe<Scalars['Boolean']>;
+  _gte?: Maybe<Scalars['Boolean']>;
+  _in?: Maybe<Array<Scalars['Boolean']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['Boolean']>;
+  _lte?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Scalars['Boolean']>;
+  _nin?: Maybe<Array<Scalars['Boolean']>>;
+};
+
 export type Bounty = {
   __typename?: 'Bounty';
   beneficiary?: Maybe<Scalars['String']>;
@@ -11962,6 +11975,337 @@ export type Bpchar_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['bpchar']>>;
 };
 
+/** columns and relationships of "calender_events" */
+export type Calender_Events = {
+  __typename?: 'calender_events';
+  content?: Maybe<Scalars['String']>;
+  end_time: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  module?: Maybe<Scalars['String']>;
+  network: Scalars['String'];
+  start_time: Scalars['timestamptz'];
+  title: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "calender_events" */
+export type Calender_Events_Aggregate = {
+  __typename?: 'calender_events_aggregate';
+  aggregate?: Maybe<Calender_Events_Aggregate_Fields>;
+  nodes: Array<Calender_Events>;
+};
+
+/** aggregate fields of "calender_events" */
+export type Calender_Events_Aggregate_Fields = {
+  __typename?: 'calender_events_aggregate_fields';
+  avg?: Maybe<Calender_Events_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Calender_Events_Max_Fields>;
+  min?: Maybe<Calender_Events_Min_Fields>;
+  stddev?: Maybe<Calender_Events_Stddev_Fields>;
+  stddev_pop?: Maybe<Calender_Events_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Calender_Events_Stddev_Samp_Fields>;
+  sum?: Maybe<Calender_Events_Sum_Fields>;
+  var_pop?: Maybe<Calender_Events_Var_Pop_Fields>;
+  var_samp?: Maybe<Calender_Events_Var_Samp_Fields>;
+  variance?: Maybe<Calender_Events_Variance_Fields>;
+};
+
+
+/** aggregate fields of "calender_events" */
+export type Calender_Events_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Calender_Events_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "calender_events" */
+export type Calender_Events_Aggregate_Order_By = {
+  avg?: Maybe<Calender_Events_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Calender_Events_Max_Order_By>;
+  min?: Maybe<Calender_Events_Min_Order_By>;
+  stddev?: Maybe<Calender_Events_Stddev_Order_By>;
+  stddev_pop?: Maybe<Calender_Events_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Calender_Events_Stddev_Samp_Order_By>;
+  sum?: Maybe<Calender_Events_Sum_Order_By>;
+  var_pop?: Maybe<Calender_Events_Var_Pop_Order_By>;
+  var_samp?: Maybe<Calender_Events_Var_Samp_Order_By>;
+  variance?: Maybe<Calender_Events_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "calender_events" */
+export type Calender_Events_Arr_Rel_Insert_Input = {
+  data: Array<Calender_Events_Insert_Input>;
+  on_conflict?: Maybe<Calender_Events_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Calender_Events_Avg_Fields = {
+  __typename?: 'calender_events_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "calender_events" */
+export type Calender_Events_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "calender_events". All fields are combined with a logical 'AND'. */
+export type Calender_Events_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Calender_Events_Bool_Exp>>>;
+  _not?: Maybe<Calender_Events_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Calender_Events_Bool_Exp>>>;
+  content?: Maybe<String_Comparison_Exp>;
+  end_time?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  module?: Maybe<String_Comparison_Exp>;
+  network?: Maybe<String_Comparison_Exp>;
+  start_time?: Maybe<Timestamptz_Comparison_Exp>;
+  title?: Maybe<String_Comparison_Exp>;
+  url?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "calender_events" */
+export enum Calender_Events_Constraint {
+  /** unique or primary key constraint */
+  CalenderEventsPkey = 'calender_events_pkey'
+}
+
+/** input type for incrementing integer column in table "calender_events" */
+export type Calender_Events_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "calender_events" */
+export type Calender_Events_Insert_Input = {
+  content?: Maybe<Scalars['String']>;
+  end_time?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  module?: Maybe<Scalars['String']>;
+  network?: Maybe<Scalars['String']>;
+  start_time?: Maybe<Scalars['timestamptz']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Calender_Events_Max_Fields = {
+  __typename?: 'calender_events_max_fields';
+  content?: Maybe<Scalars['String']>;
+  end_time?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  module?: Maybe<Scalars['String']>;
+  network?: Maybe<Scalars['String']>;
+  start_time?: Maybe<Scalars['timestamptz']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "calender_events" */
+export type Calender_Events_Max_Order_By = {
+  content?: Maybe<Order_By>;
+  end_time?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  module?: Maybe<Order_By>;
+  network?: Maybe<Order_By>;
+  start_time?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  url?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Calender_Events_Min_Fields = {
+  __typename?: 'calender_events_min_fields';
+  content?: Maybe<Scalars['String']>;
+  end_time?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  module?: Maybe<Scalars['String']>;
+  network?: Maybe<Scalars['String']>;
+  start_time?: Maybe<Scalars['timestamptz']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "calender_events" */
+export type Calender_Events_Min_Order_By = {
+  content?: Maybe<Order_By>;
+  end_time?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  module?: Maybe<Order_By>;
+  network?: Maybe<Order_By>;
+  start_time?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  url?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "calender_events" */
+export type Calender_Events_Mutation_Response = {
+  __typename?: 'calender_events_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Calender_Events>;
+};
+
+/** input type for inserting object relation for remote table "calender_events" */
+export type Calender_Events_Obj_Rel_Insert_Input = {
+  data: Calender_Events_Insert_Input;
+  on_conflict?: Maybe<Calender_Events_On_Conflict>;
+};
+
+/** on conflict condition type for table "calender_events" */
+export type Calender_Events_On_Conflict = {
+  constraint: Calender_Events_Constraint;
+  update_columns: Array<Calender_Events_Update_Column>;
+  where?: Maybe<Calender_Events_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "calender_events" */
+export type Calender_Events_Order_By = {
+  content?: Maybe<Order_By>;
+  end_time?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  module?: Maybe<Order_By>;
+  network?: Maybe<Order_By>;
+  start_time?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  url?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "calender_events" */
+export type Calender_Events_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "calender_events" */
+export enum Calender_Events_Select_Column {
+  /** column name */
+  Content = 'content',
+  /** column name */
+  EndTime = 'end_time',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Module = 'module',
+  /** column name */
+  Network = 'network',
+  /** column name */
+  StartTime = 'start_time',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  Url = 'url'
+}
+
+/** input type for updating data in table "calender_events" */
+export type Calender_Events_Set_Input = {
+  content?: Maybe<Scalars['String']>;
+  end_time?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  module?: Maybe<Scalars['String']>;
+  network?: Maybe<Scalars['String']>;
+  start_time?: Maybe<Scalars['timestamptz']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Calender_Events_Stddev_Fields = {
+  __typename?: 'calender_events_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "calender_events" */
+export type Calender_Events_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Calender_Events_Stddev_Pop_Fields = {
+  __typename?: 'calender_events_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "calender_events" */
+export type Calender_Events_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Calender_Events_Stddev_Samp_Fields = {
+  __typename?: 'calender_events_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "calender_events" */
+export type Calender_Events_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Calender_Events_Sum_Fields = {
+  __typename?: 'calender_events_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "calender_events" */
+export type Calender_Events_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "calender_events" */
+export enum Calender_Events_Update_Column {
+  /** column name */
+  Content = 'content',
+  /** column name */
+  EndTime = 'end_time',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Module = 'module',
+  /** column name */
+  Network = 'network',
+  /** column name */
+  StartTime = 'start_time',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  Url = 'url'
+}
+
+/** aggregate var_pop on columns */
+export type Calender_Events_Var_Pop_Fields = {
+  __typename?: 'calender_events_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "calender_events" */
+export type Calender_Events_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Calender_Events_Var_Samp_Fields = {
+  __typename?: 'calender_events_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "calender_events" */
+export type Calender_Events_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Calender_Events_Variance_Fields = {
+  __typename?: 'calender_events_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "calender_events" */
+export type Calender_Events_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "comment_reactions" */
 export type Comment_Reactions = {
   __typename?: 'comment_reactions';
@@ -12793,6 +13137,10 @@ export type Mutation_Root = {
   delete_blockchain_socials?: Maybe<Blockchain_Socials_Mutation_Response>;
   /** delete single row from the table: "blockchain_socials" */
   delete_blockchain_socials_by_pk?: Maybe<Blockchain_Socials>;
+  /** delete data from the table: "calender_events" */
+  delete_calender_events?: Maybe<Calender_Events_Mutation_Response>;
+  /** delete single row from the table: "calender_events" */
+  delete_calender_events_by_pk?: Maybe<Calender_Events>;
   /** delete data from the table: "comment_reactions" */
   delete_comment_reactions?: Maybe<Comment_Reactions_Mutation_Response>;
   /** delete single row from the table: "comment_reactions" */
@@ -12813,6 +13161,10 @@ export type Mutation_Root = {
   delete_option_poll_votes?: Maybe<Option_Poll_Votes_Mutation_Response>;
   /** delete single row from the table: "option_poll_votes" */
   delete_option_poll_votes_by_pk?: Maybe<Option_Poll_Votes>;
+  /** delete data from the table: "polkassembly_proposals" */
+  delete_polkassembly_proposals?: Maybe<Polkassembly_Proposals_Mutation_Response>;
+  /** delete single row from the table: "polkassembly_proposals" */
+  delete_polkassembly_proposals_by_pk?: Maybe<Polkassembly_Proposals>;
   /** delete data from the table: "poll" */
   delete_poll?: Maybe<Poll_Mutation_Response>;
   /** delete single row from the table: "poll" */
@@ -12848,6 +13200,10 @@ export type Mutation_Root = {
   insert_blockchain_socials?: Maybe<Blockchain_Socials_Mutation_Response>;
   /** insert a single row into the table: "blockchain_socials" */
   insert_blockchain_socials_one?: Maybe<Blockchain_Socials>;
+  /** insert data into the table: "calender_events" */
+  insert_calender_events?: Maybe<Calender_Events_Mutation_Response>;
+  /** insert a single row into the table: "calender_events" */
+  insert_calender_events_one?: Maybe<Calender_Events>;
   /** insert data into the table: "comment_reactions" */
   insert_comment_reactions?: Maybe<Comment_Reactions_Mutation_Response>;
   /** insert a single row into the table: "comment_reactions" */
@@ -12868,6 +13224,10 @@ export type Mutation_Root = {
   insert_option_poll_votes?: Maybe<Option_Poll_Votes_Mutation_Response>;
   /** insert a single row into the table: "option_poll_votes" */
   insert_option_poll_votes_one?: Maybe<Option_Poll_Votes>;
+  /** insert data into the table: "polkassembly_proposals" */
+  insert_polkassembly_proposals?: Maybe<Polkassembly_Proposals_Mutation_Response>;
+  /** insert a single row into the table: "polkassembly_proposals" */
+  insert_polkassembly_proposals_one?: Maybe<Polkassembly_Proposals>;
   /** insert data into the table: "poll" */
   insert_poll?: Maybe<Poll_Mutation_Response>;
   /** insert a single row into the table: "poll" */
@@ -12980,6 +13340,10 @@ export type Mutation_Root = {
   update_blockchain_socials?: Maybe<Blockchain_Socials_Mutation_Response>;
   /** update single row of the table: "blockchain_socials" */
   update_blockchain_socials_by_pk?: Maybe<Blockchain_Socials>;
+  /** update data of the table: "calender_events" */
+  update_calender_events?: Maybe<Calender_Events_Mutation_Response>;
+  /** update single row of the table: "calender_events" */
+  update_calender_events_by_pk?: Maybe<Calender_Events>;
   /** update data of the table: "comment_reactions" */
   update_comment_reactions?: Maybe<Comment_Reactions_Mutation_Response>;
   /** update single row of the table: "comment_reactions" */
@@ -13000,6 +13364,10 @@ export type Mutation_Root = {
   update_option_poll_votes?: Maybe<Option_Poll_Votes_Mutation_Response>;
   /** update single row of the table: "option_poll_votes" */
   update_option_poll_votes_by_pk?: Maybe<Option_Poll_Votes>;
+  /** update data of the table: "polkassembly_proposals" */
+  update_polkassembly_proposals?: Maybe<Polkassembly_Proposals_Mutation_Response>;
+  /** update single row of the table: "polkassembly_proposals" */
+  update_polkassembly_proposals_by_pk?: Maybe<Polkassembly_Proposals>;
   /** update data of the table: "poll" */
   update_poll?: Maybe<Poll_Mutation_Response>;
   /** update single row of the table: "poll" */
@@ -13779,6 +14147,18 @@ export type Mutation_RootDelete_Blockchain_Socials_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Calender_EventsArgs = {
+  where: Calender_Events_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Calender_Events_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Comment_ReactionsArgs = {
   where: Comment_Reactions_Bool_Exp;
 };
@@ -13834,6 +14214,18 @@ export type Mutation_RootDelete_Option_Poll_VotesArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Option_Poll_Votes_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Polkassembly_ProposalsArgs = {
+  where: Polkassembly_Proposals_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Polkassembly_Proposals_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -13962,6 +14354,20 @@ export type Mutation_RootInsert_Blockchain_Socials_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Calender_EventsArgs = {
+  objects: Array<Calender_Events_Insert_Input>;
+  on_conflict?: Maybe<Calender_Events_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Calender_Events_OneArgs = {
+  object: Calender_Events_Insert_Input;
+  on_conflict?: Maybe<Calender_Events_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Comment_ReactionsArgs = {
   objects: Array<Comment_Reactions_Insert_Input>;
   on_conflict?: Maybe<Comment_Reactions_On_Conflict>;
@@ -14028,6 +14434,20 @@ export type Mutation_RootInsert_Option_Poll_VotesArgs = {
 export type Mutation_RootInsert_Option_Poll_Votes_OneArgs = {
   object: Option_Poll_Votes_Insert_Input;
   on_conflict?: Maybe<Option_Poll_Votes_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Polkassembly_ProposalsArgs = {
+  objects: Array<Polkassembly_Proposals_Insert_Input>;
+  on_conflict?: Maybe<Polkassembly_Proposals_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Polkassembly_Proposals_OneArgs = {
+  object: Polkassembly_Proposals_Insert_Input;
+  on_conflict?: Maybe<Polkassembly_Proposals_On_Conflict>;
 };
 
 
@@ -14698,6 +15118,22 @@ export type Mutation_RootUpdate_Blockchain_Socials_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Calender_EventsArgs = {
+  _inc?: Maybe<Calender_Events_Inc_Input>;
+  _set?: Maybe<Calender_Events_Set_Input>;
+  where: Calender_Events_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Calender_Events_By_PkArgs = {
+  _inc?: Maybe<Calender_Events_Inc_Input>;
+  _set?: Maybe<Calender_Events_Set_Input>;
+  pk_columns: Calender_Events_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Comment_ReactionsArgs = {
   _inc?: Maybe<Comment_Reactions_Inc_Input>;
   _set?: Maybe<Comment_Reactions_Set_Input>;
@@ -14774,6 +15210,22 @@ export type Mutation_RootUpdate_Option_Poll_Votes_By_PkArgs = {
   _inc?: Maybe<Option_Poll_Votes_Inc_Input>;
   _set?: Maybe<Option_Poll_Votes_Set_Input>;
   pk_columns: Option_Poll_Votes_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Polkassembly_ProposalsArgs = {
+  _inc?: Maybe<Polkassembly_Proposals_Inc_Input>;
+  _set?: Maybe<Polkassembly_Proposals_Set_Input>;
+  where: Polkassembly_Proposals_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Polkassembly_Proposals_By_PkArgs = {
+  _inc?: Maybe<Polkassembly_Proposals_Inc_Input>;
+  _set?: Maybe<Polkassembly_Proposals_Set_Input>;
+  pk_columns: Polkassembly_Proposals_Pk_Columns_Input;
 };
 
 
@@ -16549,6 +17001,433 @@ export enum Order_By {
   /** in the descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
 }
+
+/** columns and relationships of "polkassembly_proposals" */
+export type Polkassembly_Proposals = {
+  __typename?: 'polkassembly_proposals';
+  /** Remote relationship field */
+  author?: Maybe<User>;
+  author_id: Scalars['Int'];
+  content: Scalars['String'];
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  is_synced: Scalars['Boolean'];
+  proposal_hash: Scalars['String'];
+  proposal_id: Scalars['Int'];
+  proposal_type: Scalars['Int'];
+  proposer_address: Scalars['String'];
+  title: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+
+/** columns and relationships of "polkassembly_proposals" */
+export type Polkassembly_ProposalsAuthorArgs = {
+  id: Scalars['Int'];
+};
+
+/** aggregated selection of "polkassembly_proposals" */
+export type Polkassembly_Proposals_Aggregate = {
+  __typename?: 'polkassembly_proposals_aggregate';
+  aggregate?: Maybe<Polkassembly_Proposals_Aggregate_Fields>;
+  nodes: Array<Polkassembly_Proposals>;
+};
+
+/** aggregate fields of "polkassembly_proposals" */
+export type Polkassembly_Proposals_Aggregate_Fields = {
+  __typename?: 'polkassembly_proposals_aggregate_fields';
+  avg?: Maybe<Polkassembly_Proposals_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Polkassembly_Proposals_Max_Fields>;
+  min?: Maybe<Polkassembly_Proposals_Min_Fields>;
+  stddev?: Maybe<Polkassembly_Proposals_Stddev_Fields>;
+  stddev_pop?: Maybe<Polkassembly_Proposals_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Polkassembly_Proposals_Stddev_Samp_Fields>;
+  sum?: Maybe<Polkassembly_Proposals_Sum_Fields>;
+  var_pop?: Maybe<Polkassembly_Proposals_Var_Pop_Fields>;
+  var_samp?: Maybe<Polkassembly_Proposals_Var_Samp_Fields>;
+  variance?: Maybe<Polkassembly_Proposals_Variance_Fields>;
+};
+
+
+/** aggregate fields of "polkassembly_proposals" */
+export type Polkassembly_Proposals_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Polkassembly_Proposals_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Aggregate_Order_By = {
+  avg?: Maybe<Polkassembly_Proposals_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Polkassembly_Proposals_Max_Order_By>;
+  min?: Maybe<Polkassembly_Proposals_Min_Order_By>;
+  stddev?: Maybe<Polkassembly_Proposals_Stddev_Order_By>;
+  stddev_pop?: Maybe<Polkassembly_Proposals_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Polkassembly_Proposals_Stddev_Samp_Order_By>;
+  sum?: Maybe<Polkassembly_Proposals_Sum_Order_By>;
+  var_pop?: Maybe<Polkassembly_Proposals_Var_Pop_Order_By>;
+  var_samp?: Maybe<Polkassembly_Proposals_Var_Samp_Order_By>;
+  variance?: Maybe<Polkassembly_Proposals_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Arr_Rel_Insert_Input = {
+  data: Array<Polkassembly_Proposals_Insert_Input>;
+  on_conflict?: Maybe<Polkassembly_Proposals_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Polkassembly_Proposals_Avg_Fields = {
+  __typename?: 'polkassembly_proposals_avg_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Avg_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "polkassembly_proposals". All fields are combined with a logical 'AND'. */
+export type Polkassembly_Proposals_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Polkassembly_Proposals_Bool_Exp>>>;
+  _not?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Polkassembly_Proposals_Bool_Exp>>>;
+  author_id?: Maybe<Int_Comparison_Exp>;
+  content?: Maybe<String_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  is_synced?: Maybe<Boolean_Comparison_Exp>;
+  proposal_hash?: Maybe<String_Comparison_Exp>;
+  proposal_id?: Maybe<Int_Comparison_Exp>;
+  proposal_type?: Maybe<Int_Comparison_Exp>;
+  proposer_address?: Maybe<String_Comparison_Exp>;
+  title?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "polkassembly_proposals" */
+export enum Polkassembly_Proposals_Constraint {
+  /** unique or primary key constraint */
+  PolkassemblyProposalsPkey = 'polkassembly_proposals_pkey',
+  /** unique or primary key constraint */
+  PolkassemblyProposalsProposalHashKey = 'polkassembly_proposals_proposal_hash_key'
+}
+
+/** input type for incrementing integer column in table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Inc_Input = {
+  author_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Insert_Input = {
+  author_id?: Maybe<Scalars['Int']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  is_synced?: Maybe<Scalars['Boolean']>;
+  proposal_hash?: Maybe<Scalars['String']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+  proposer_address?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Polkassembly_Proposals_Max_Fields = {
+  __typename?: 'polkassembly_proposals_max_fields';
+  author_id?: Maybe<Scalars['Int']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  proposal_hash?: Maybe<Scalars['String']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+  proposer_address?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Max_Order_By = {
+  author_id?: Maybe<Order_By>;
+  content?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_hash?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+  proposer_address?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Polkassembly_Proposals_Min_Fields = {
+  __typename?: 'polkassembly_proposals_min_fields';
+  author_id?: Maybe<Scalars['Int']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  proposal_hash?: Maybe<Scalars['String']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+  proposer_address?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Min_Order_By = {
+  author_id?: Maybe<Order_By>;
+  content?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_hash?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+  proposer_address?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Mutation_Response = {
+  __typename?: 'polkassembly_proposals_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Polkassembly_Proposals>;
+};
+
+/** input type for inserting object relation for remote table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Obj_Rel_Insert_Input = {
+  data: Polkassembly_Proposals_Insert_Input;
+  on_conflict?: Maybe<Polkassembly_Proposals_On_Conflict>;
+};
+
+/** on conflict condition type for table "polkassembly_proposals" */
+export type Polkassembly_Proposals_On_Conflict = {
+  constraint: Polkassembly_Proposals_Constraint;
+  update_columns: Array<Polkassembly_Proposals_Update_Column>;
+  where?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "polkassembly_proposals" */
+export type Polkassembly_Proposals_Order_By = {
+  author_id?: Maybe<Order_By>;
+  content?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  is_synced?: Maybe<Order_By>;
+  proposal_hash?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+  proposer_address?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "polkassembly_proposals" */
+export type Polkassembly_Proposals_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "polkassembly_proposals" */
+export enum Polkassembly_Proposals_Select_Column {
+  /** column name */
+  AuthorId = 'author_id',
+  /** column name */
+  Content = 'content',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IsSynced = 'is_synced',
+  /** column name */
+  ProposalHash = 'proposal_hash',
+  /** column name */
+  ProposalId = 'proposal_id',
+  /** column name */
+  ProposalType = 'proposal_type',
+  /** column name */
+  ProposerAddress = 'proposer_address',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Set_Input = {
+  author_id?: Maybe<Scalars['Int']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  is_synced?: Maybe<Scalars['Boolean']>;
+  proposal_hash?: Maybe<Scalars['String']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+  proposer_address?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Polkassembly_Proposals_Stddev_Fields = {
+  __typename?: 'polkassembly_proposals_stddev_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Stddev_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Polkassembly_Proposals_Stddev_Pop_Fields = {
+  __typename?: 'polkassembly_proposals_stddev_pop_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Stddev_Pop_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Polkassembly_Proposals_Stddev_Samp_Fields = {
+  __typename?: 'polkassembly_proposals_stddev_samp_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Stddev_Samp_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Polkassembly_Proposals_Sum_Fields = {
+  __typename?: 'polkassembly_proposals_sum_fields';
+  author_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  proposal_id?: Maybe<Scalars['Int']>;
+  proposal_type?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Sum_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** update columns of table "polkassembly_proposals" */
+export enum Polkassembly_Proposals_Update_Column {
+  /** column name */
+  AuthorId = 'author_id',
+  /** column name */
+  Content = 'content',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IsSynced = 'is_synced',
+  /** column name */
+  ProposalHash = 'proposal_hash',
+  /** column name */
+  ProposalId = 'proposal_id',
+  /** column name */
+  ProposalType = 'proposal_type',
+  /** column name */
+  ProposerAddress = 'proposer_address',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Polkassembly_Proposals_Var_Pop_Fields = {
+  __typename?: 'polkassembly_proposals_var_pop_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Var_Pop_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Polkassembly_Proposals_Var_Samp_Fields = {
+  __typename?: 'polkassembly_proposals_var_samp_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Var_Samp_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Polkassembly_Proposals_Variance_Fields = {
+  __typename?: 'polkassembly_proposals_variance_fields';
+  author_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  proposal_id?: Maybe<Scalars['Float']>;
+  proposal_type?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "polkassembly_proposals" */
+export type Polkassembly_Proposals_Variance_Order_By = {
+  author_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  proposal_id?: Maybe<Order_By>;
+  proposal_type?: Maybe<Order_By>;
+};
 
 /** columns and relationships of "poll" */
 export type Poll = {
@@ -18892,6 +19771,12 @@ export type Query_Root = {
   bountyStatus?: Maybe<BountyStatus>;
   bountyStatuses: Array<Maybe<BountyStatus>>;
   bountyStatusesConnection: BountyStatusConnection;
+  /** fetch data from the table: "calender_events" */
+  calender_events: Array<Calender_Events>;
+  /** fetch aggregated fields from the table: "calender_events" */
+  calender_events_aggregate: Calender_Events_Aggregate;
+  /** fetch data from the table: "calender_events" using primary key columns */
+  calender_events_by_pk?: Maybe<Calender_Events>;
   /** fetch data from the table: "comment_reactions" */
   comment_reactions: Array<Comment_Reactions>;
   /** fetch aggregated fields from the table: "comment_reactions" */
@@ -18951,6 +19836,12 @@ export type Query_Root = {
   option_poll_votes_aggregate: Option_Poll_Votes_Aggregate;
   /** fetch data from the table: "option_poll_votes" using primary key columns */
   option_poll_votes_by_pk?: Maybe<Option_Poll_Votes>;
+  /** fetch data from the table: "polkassembly_proposals" */
+  polkassembly_proposals: Array<Polkassembly_Proposals>;
+  /** fetch aggregated fields from the table: "polkassembly_proposals" */
+  polkassembly_proposals_aggregate: Polkassembly_Proposals_Aggregate;
+  /** fetch data from the table: "polkassembly_proposals" using primary key columns */
+  polkassembly_proposals_by_pk?: Maybe<Polkassembly_Proposals>;
   /** fetch data from the table: "poll" */
   poll: Array<Poll>;
   /** fetch aggregated fields from the table: "poll" */
@@ -19214,6 +20105,32 @@ export type Query_RootBountyStatusesConnectionArgs = {
   orderBy?: Maybe<BountyStatusOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   where?: Maybe<BountyStatusWhereInput>;
+};
+
+
+/** query root */
+export type Query_RootCalender_EventsArgs = {
+  distinct_on?: Maybe<Array<Calender_Events_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Calender_Events_Order_By>>;
+  where?: Maybe<Calender_Events_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCalender_Events_AggregateArgs = {
+  distinct_on?: Maybe<Array<Calender_Events_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Calender_Events_Order_By>>;
+  where?: Maybe<Calender_Events_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCalender_Events_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -19619,6 +20536,32 @@ export type Query_RootOption_Poll_Votes_AggregateArgs = {
 
 /** query root */
 export type Query_RootOption_Poll_Votes_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootPolkassembly_ProposalsArgs = {
+  distinct_on?: Maybe<Array<Polkassembly_Proposals_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Polkassembly_Proposals_Order_By>>;
+  where?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPolkassembly_Proposals_AggregateArgs = {
+  distinct_on?: Maybe<Array<Polkassembly_Proposals_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Polkassembly_Proposals_Order_By>>;
+  where?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPolkassembly_Proposals_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -20767,6 +21710,12 @@ export type Subscription_Root = {
   blockchain_socials_by_pk?: Maybe<Blockchain_Socials>;
   bounty?: Maybe<BountySubscriptionPayload>;
   bountyStatus?: Maybe<BountyStatusSubscriptionPayload>;
+  /** fetch data from the table: "calender_events" */
+  calender_events: Array<Calender_Events>;
+  /** fetch aggregated fields from the table: "calender_events" */
+  calender_events_aggregate: Calender_Events_Aggregate;
+  /** fetch data from the table: "calender_events" using primary key columns */
+  calender_events_by_pk?: Maybe<Calender_Events>;
   /** fetch data from the table: "comment_reactions" */
   comment_reactions: Array<Comment_Reactions>;
   /** fetch aggregated fields from the table: "comment_reactions" */
@@ -20806,6 +21755,12 @@ export type Subscription_Root = {
   option_poll_votes_aggregate: Option_Poll_Votes_Aggregate;
   /** fetch data from the table: "option_poll_votes" using primary key columns */
   option_poll_votes_by_pk?: Maybe<Option_Poll_Votes>;
+  /** fetch data from the table: "polkassembly_proposals" */
+  polkassembly_proposals: Array<Polkassembly_Proposals>;
+  /** fetch aggregated fields from the table: "polkassembly_proposals" */
+  polkassembly_proposals_aggregate: Polkassembly_Proposals_Aggregate;
+  /** fetch data from the table: "polkassembly_proposals" using primary key columns */
+  polkassembly_proposals_by_pk?: Maybe<Polkassembly_Proposals>;
   /** fetch data from the table: "poll" */
   poll: Array<Poll>;
   /** fetch aggregated fields from the table: "poll" */
@@ -20923,6 +21878,32 @@ export type Subscription_RootBountyArgs = {
 /** subscription root */
 export type Subscription_RootBountyStatusArgs = {
   where?: Maybe<BountyStatusSubscriptionWhereInput>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCalender_EventsArgs = {
+  distinct_on?: Maybe<Array<Calender_Events_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Calender_Events_Order_By>>;
+  where?: Maybe<Calender_Events_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCalender_Events_AggregateArgs = {
+  distinct_on?: Maybe<Array<Calender_Events_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Calender_Events_Order_By>>;
+  where?: Maybe<Calender_Events_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCalender_Events_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -21106,6 +22087,32 @@ export type Subscription_RootOption_Poll_Votes_AggregateArgs = {
 
 /** subscription root */
 export type Subscription_RootOption_Poll_Votes_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootPolkassembly_ProposalsArgs = {
+  distinct_on?: Maybe<Array<Polkassembly_Proposals_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Polkassembly_Proposals_Order_By>>;
+  where?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPolkassembly_Proposals_AggregateArgs = {
+  distinct_on?: Maybe<Array<Polkassembly_Proposals_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Polkassembly_Proposals_Order_By>>;
+  where?: Maybe<Polkassembly_Proposals_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPolkassembly_Proposals_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -22044,6 +23051,19 @@ export type Get_Refresh_TokenQuery = (
   & { token?: Maybe<(
     { __typename?: 'Token' }
     & Pick<Token, 'token'>
+  )> }
+);
+
+export type Get_Calender_EventsQueryVariables = Exact<{
+  network: Scalars['String'];
+}>;
+
+
+export type Get_Calender_EventsQuery = (
+  { __typename?: 'query_root' }
+  & { calender_events: Array<(
+    { __typename?: 'calender_events' }
+    & Pick<Calender_Events, 'content' | 'end_time' | 'id' | 'module' | 'network' | 'start_time' | 'title' | 'url'>
   )> }
 );
 
@@ -26024,6 +27044,46 @@ export function useGet_Refresh_TokenLazyQuery(baseOptions?: ApolloReactHooks.Laz
 export type Get_Refresh_TokenQueryHookResult = ReturnType<typeof useGet_Refresh_TokenQuery>;
 export type Get_Refresh_TokenLazyQueryHookResult = ReturnType<typeof useGet_Refresh_TokenLazyQuery>;
 export type Get_Refresh_TokenQueryResult = ApolloReactCommon.QueryResult<Get_Refresh_TokenQuery, Get_Refresh_TokenQueryVariables>;
+export const Get_Calender_EventsDocument = gql`
+    query GET_CALENDER_EVENTS($network: String!) {
+  calender_events(where: {network: {_ilike: $network}}) {
+    content
+    end_time
+    id
+    module
+    network
+    start_time
+    title
+    url
+  }
+}
+    `;
+
+/**
+ * __useGet_Calender_EventsQuery__
+ *
+ * To run a query within a React component, call `useGet_Calender_EventsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGet_Calender_EventsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGet_Calender_EventsQuery({
+ *   variables: {
+ *      network: // value for 'network'
+ *   },
+ * });
+ */
+export function useGet_Calender_EventsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Get_Calender_EventsQuery, Get_Calender_EventsQueryVariables>) {
+        return ApolloReactHooks.useQuery<Get_Calender_EventsQuery, Get_Calender_EventsQueryVariables>(Get_Calender_EventsDocument, baseOptions);
+      }
+export function useGet_Calender_EventsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Get_Calender_EventsQuery, Get_Calender_EventsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<Get_Calender_EventsQuery, Get_Calender_EventsQueryVariables>(Get_Calender_EventsDocument, baseOptions);
+        }
+export type Get_Calender_EventsQueryHookResult = ReturnType<typeof useGet_Calender_EventsQuery>;
+export type Get_Calender_EventsLazyQueryHookResult = ReturnType<typeof useGet_Calender_EventsLazyQuery>;
+export type Get_Calender_EventsQueryResult = ApolloReactCommon.QueryResult<Get_Calender_EventsQuery, Get_Calender_EventsQueryVariables>;
 export const AllBountyPostsDocument = gql`
     query AllBountyPosts($postType: Int!, $postTopic: Int!, $limit: Int! = 5) {
   posts(
