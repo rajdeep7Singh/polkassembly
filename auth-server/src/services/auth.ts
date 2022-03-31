@@ -7,7 +7,7 @@ import * as argon2 from 'argon2';
 import { randomBytes, timingSafeEqual } from 'crypto';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
-import fetch from 'node-fetch';
+import fetch, { Blob } from 'node-fetch';
 import { uuid } from 'uuidv4';
 import validator from 'validator';
 
@@ -1248,5 +1248,19 @@ export default class AuthService {
 		if (json.errors) {
 			throw new ForbiddenError(messages.ERROR_IN_POST_EDIT);
 		}
+	}
+
+	public async UploadImage (token: string, imageData: string): Promise<void> {
+
+		const userId = getUserIdFromJWT(token, jwtPublicKey);
+
+		if (!userId) {
+			throw new ForbiddenError(messages.USER_NOT_FOUND);
+		}
+
+		await User
+			.query()
+			.patch({ image: imageData})
+			.findById(userId);
 	}
 }

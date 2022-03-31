@@ -48,6 +48,7 @@ export default {
 	EVENT_USER_EMAIL_NOT_VERIFIED: 'User email not verified.',
 	EVENT_USER_NOTIFICATION_PREFERENCE_FALSE: 'Notification preference is set to not send email.',
 	EVENT_USER_NOT_FOUND: 'User not found.',
+	IMAGE_UPLOAD_SUCCESSFULL: 'Image uploaded successfully',
 	INCORRECT_PASSWORD: 'Your password is incorrect.',
 	INVALID_EMAIL: 'Please enter a valid email.',
 	INVALID_EMAIL_UNDO_TOKEN: 'Invalid email change undo token.',

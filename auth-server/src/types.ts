@@ -4,6 +4,7 @@
 
 import { Request, Response } from 'express';
 import { Config as KnexConfig } from 'knex';
+import { Blob } from 'node-fetch';
 
 export interface Config {
     [index: string]: KnexConfig;
@@ -354,4 +355,9 @@ export interface EditPostArgs {
     signature: string;
     proposalType: string;
     proposalId: string;
+}
+
+export interface UploadImageArgs {
+    token: string;
+    image: string;
 }

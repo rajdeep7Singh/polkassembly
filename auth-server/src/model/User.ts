@@ -3,6 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import * as argon2 from 'argon2';
+import { Blob } from 'node-fetch';
 import { Model } from 'objection';
 
 import { JsonSchema } from '../types';
@@ -18,6 +19,7 @@ export default class User extends Model {
 	salt!: string
 	username!: string
 	web3signup!: boolean | undefined
+	image: string | null = null;
 
 	static get tableName (): string {
 		return 'users';
@@ -34,7 +36,8 @@ export default class User extends Model {
 				email_verified: { type: 'boolean' },
 				id: { type: 'integer' },
 				username: { maxLength: 255, minLength: 1, type: 'string' },
-				web3signup: { type: 'boolean' }
+				web3signup: { type: 'boolean' },
+				image: { type: 'string' }
 			},
 			required: ['username'],
 			type: 'object'
